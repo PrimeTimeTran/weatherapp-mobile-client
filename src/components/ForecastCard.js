@@ -1,25 +1,39 @@
 import { StyleSheet, Image, Text, View } from 'react-native';
 
 export default function ForecastCard({ item }) {
+  const {
+    date,
+    day: {
+      maxtemp_f,
+      mintemp_f,
+      avgtemp_f,
+      avghumidity,
+      condition: {
+        icon,
+        text,
+      }
+    }
+  } = item
+
   return (
     <View style={styles.forecastCard}>
       <View style={styles.flexOne}>
         <Image
           style={styles.icon}
-          source={{ uri: 'http:' + item.day.condition.icon }}
+          source={{ uri: 'http:' + icon }}
         />
-        <Text>{item.date.slice(5, 10)}</Text>
+        <Text>{date.slice(5, 10)}</Text>
       </View>
       <View style={styles.flexOne}>
         <Text>
-          {item.day.condition.text}
+          {text}
         </Text>
       </View>
       <View style={styles.body}>
-        <Text> Max: {item.day.maxtemp_f}</Text>
-        <Text> Min: {item.day.mintemp_f}</Text>
-        <Text> Average: {item.day.avgtemp_f}</Text>
-        <Text> Humidity: {item.day.avghumidity}</Text>
+        <Text> Max: {maxtemp_f}</Text>
+        <Text> Min: {mintemp_f}</Text>
+        <Text> Average: {avgtemp_f}</Text>
+        <Text> Humidity: {avghumidity}</Text>
       </View>
     </View>
   )
