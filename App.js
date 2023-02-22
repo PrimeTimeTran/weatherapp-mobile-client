@@ -29,6 +29,7 @@ export default function App() {
     }
     fetchForecasts()
   }, [])
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 20,
-    color: 'blue',
+    color: 'blue',j
     fontWeight: 'bold',
   },
   cardContainer: {
