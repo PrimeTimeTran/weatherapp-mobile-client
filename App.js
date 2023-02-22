@@ -1,22 +1,10 @@
 import { useState, useEffect } from 'react'
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import { SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native'
 
-import ForecastCard from './src/components/ForecastCard'
+import CityCard from './src/components/CityCard'
 
 const url = 'http://127.0.0.1:5000/'
-
-function Forecasts({ data }) {
-  return (
-    <FlatList
-      data={data}
-      horizontal
-      renderItem={({ item }) => {
-        return <ForecastCard item={item} />
-      }}
-    />
-  )
-}
 
 export default function App() {
   const [cities, setCities] = useState([])
@@ -37,21 +25,7 @@ export default function App() {
         <Text>14 day forecasts</Text>
         <FlatList
           data={cities}
-          renderItem={({ item: i }) => {
-            const {
-              location: {
-                name,
-                region
-              },
-              forecast: {
-                forecastday: forecasts
-              }
-            } = i
-            return <View style={styles.cardContainer}>
-              <Text style={styles.location}>{name + ', ' + region}</Text>
-              <Forecasts data={forecasts} />
-            </View>
-          }}
+          renderItem={({ item }) => <CityCard city={item} />}
         />
       </SafeAreaView>
     </View>
@@ -65,13 +39,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     justifyContent: 'center',
-  },
-  location: {
-    fontSize: 20,
-    color: 'blue',
-    fontWeight: 'bold',
-  },
-  cardContainer: {
-    height: 250
   },
 });
