@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 20,
-    color: 'blue',j
+    color: 'blue',
     fontWeight: 'bold',
   },
   cardContainer: {
